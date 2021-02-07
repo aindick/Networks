@@ -13,7 +13,7 @@ public class TCPServer {
 
             for(;;){
                 try{
-                    Socket a = socket.accept();
+                    Socket client = socket.accept();
                     System.out.println("Works on: " + port);
                     break;
                     //Catches if the socket times out.
