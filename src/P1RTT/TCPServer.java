@@ -23,9 +23,10 @@ public class TCPServer {
                 }
 
             }
-            //Catch exception that will be thrown when something goes wrong.
+            //Catch exception that will be thrown when something goes wrong and will exit the program
         } catch (IOException e) {
             e.printStackTrace();
+            System.exit(-1);
         }
 
     }
