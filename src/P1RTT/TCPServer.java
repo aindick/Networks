@@ -10,6 +10,7 @@ public class TCPServer {
             ServerSocket socket = new ServerSocket(port);
             //setSoTimeout throws a SocketTimeout Exception when time is reached.
             socket.setSoTimeout(2000);
+            Socket client;
             //Catch exception that will be thrown when something goes wrong.
         } catch (IOException e) {
             e.printStackTrace();
