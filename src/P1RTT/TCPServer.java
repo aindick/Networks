@@ -29,6 +29,19 @@ public class TCPServer {
             InputStream ins = client.getInputStream();
             DataInputStream di = new DataInputStream(ins);
 
+            for(;;){
+                try{
+                    int size = di.readInt();
+                    byte bs[] = new byte[size];
+                    di.readFully(bs);
+                    dops.write(bs);
+                }catch (EOFException e){
+                    System.out.println("Done on Port: "+ port);
+                    break;
+
+                }
+            }
+
             //Catch exception that will be thrown when something goes wrong and will exit the program.
         } catch (IOException e) {
             e.printStackTrace();
