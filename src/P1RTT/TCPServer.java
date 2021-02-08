@@ -28,13 +28,17 @@ public class TCPServer {
             DataOutputStream dops = new DataOutputStream(ops);
             InputStream ins = client.getInputStream();
             DataInputStream di = new DataInputStream(ins);
-
+            /* This block of code reads the integers from the DataInputStream
+               and then a byte array is established so then the readFully function
+               reads the bytes and allocates it into bs. dops then writes to bs.
+             */
             for(;;){
                 try{
                     int size = di.readInt();
                     byte[] bs = new byte[size];
                     di.readFully(bs);
                     dops.write(bs);
+                    //Thrown if input stream is read ended before 4 bytes can be read.
                 }catch (EOFException e){
                     System.out.println("Done on Port: "+ port);
                     break;
