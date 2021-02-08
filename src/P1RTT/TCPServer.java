@@ -32,7 +32,7 @@ public class TCPServer {
             for(;;){
                 try{
                     int size = di.readInt();
-                    byte bs[] = new byte[size];
+                    byte[] bs = new byte[size];
                     di.readFully(bs);
                     dops.write(bs);
                 }catch (EOFException e){
