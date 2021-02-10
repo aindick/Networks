@@ -11,6 +11,13 @@ public class TCPClient {
         ArrayList<Long> averageKB = new ArrayList<>();
         try{
             Socket socket = new Socket(host, port);
+            socket.setSoTimeout(2000);
+
+            InputStream ins = socket.getInputStream();
+            OutputStream ops = socket.getOutputStream();
+            DataInputStream di = new DataInputStream(ins);
+            DataOutputStream dops = new DataOutputStream(ops);
+
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (IOException e) {
