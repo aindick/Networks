@@ -32,7 +32,7 @@ public class TCPServer {
                and then a byte array is established so then the readFully function
                reads the bytes and allocates it into bs. dops then writes to bs.
              */
-            for (; ; ) {
+            for (;; ) {
                 try {
                     int size = di.readInt();
                     byte[] bs = new byte[size];
