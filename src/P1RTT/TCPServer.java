@@ -7,13 +7,13 @@ public class TCPServer {
     public static void main(String[] args){
         Socket client;
         //Establishing a new socket that connects to my port.
-        try{
+        try {
             ServerSocket socket = new ServerSocket(port);
             //setSoTimeout throws a SocketTimeout Exception when time is reached.
             socket.setSoTimeout(2000);
 
-            for(;;){
-                try{
+            for (; ; ) {
+                try {
                     client = socket.accept();
                     System.out.println("Works on: " + port);
                     break;
@@ -32,15 +32,15 @@ public class TCPServer {
                and then a byte array is established so then the readFully function
                reads the bytes and allocates it into bs. dops then writes to bs.
              */
-            for(;;){
-                try{
+            for (; ; ) {
+                try {
                     int size = di.readInt();
                     byte[] bs = new byte[size];
                     di.readFully(bs);
                     dops.write(bs);
                     //Thrown if input stream is read ended before 4 bytes can be read.
-                }catch (EOFException e){
-                    System.out.println("Done on Port: "+ port);
+                } catch (EOFException e) {
+                    System.out.println("Done on Port: " + port);
                     break;
 
                 }
@@ -52,6 +52,8 @@ public class TCPServer {
             di.close();
             client.close();
             socket.close();
+
+
 
             //Catch exception that will be thrown when something goes wrong and will exit the program.
         } catch (IOException e) {
