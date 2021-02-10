@@ -45,6 +45,13 @@ public class TCPServer {
 
                 }
             }
+            //Closing up the scanner
+            ops.close();
+            dops.close();
+            ins.close();
+            di.close();
+            client.close();
+            socket.close();
 
             //Catch exception that will be thrown when something goes wrong and will exit the program.
         } catch (IOException e) {
