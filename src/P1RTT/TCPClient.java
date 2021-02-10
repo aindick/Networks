@@ -9,6 +9,9 @@ public class TCPClient {
 
     public static void main(String[] args){
         ArrayList<Long> averageKB = new ArrayList<>();
+        ArrayList<Long> averageOne = new ArrayList<>();
+        ArrayList<Long> averageSixtyFour = new ArrayList<>();
+
         try{
             Socket socket = new Socket(host, port);
             socket.setSoTimeout(2000);
@@ -17,6 +20,10 @@ public class TCPClient {
             OutputStream ops = socket.getOutputStream();
             DataInputStream di = new DataInputStream(ins);
             DataOutputStream dops = new DataOutputStream(ops);
+
+            for( int i = 0; i < 1000; i++){
+
+            }
 
         } catch (UnknownHostException e) {
             e.printStackTrace();
