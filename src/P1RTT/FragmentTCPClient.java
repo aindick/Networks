@@ -3,6 +3,7 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 public class FragmentTCPClient {
@@ -16,6 +17,24 @@ public class FragmentTCPClient {
         ArrayList<Long> averageOne = new ArrayList<>();
         ArrayList<Long> averageTwo = new ArrayList<>();
         ArrayList<Long> averageFour = new ArrayList<>();
+
+
+
+        try{
+            Socket socket = new Socket(host, port);
+
+
+            OutputStream ops = socket.getOutputStream();
+            DataOutputStream dops = new DataOutputStream(ops);
+
+            InputStream ins = socket.getInputStream();
+            DataInputStream di = new DataInputStream(ins);
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static double average(ArrayList<Long> values) {

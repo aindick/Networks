@@ -26,6 +26,7 @@ public class TCPServer {
             //This is for reading primitive Java data types(Data) and writing data (Output). Input = reading bytes.
             OutputStream ops = client.getOutputStream();
             DataOutputStream dops = new DataOutputStream(ops);
+
             InputStream ins = client.getInputStream();
             DataInputStream di = new DataInputStream(ins);
             /* This block of code reads the integers from the DataInputStream

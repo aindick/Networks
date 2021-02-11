@@ -17,8 +17,10 @@ public class TCPClient {
             try {
                 Socket socket = new Socket(host, port);
                 socket.setSoTimeout(2000);
+
                 OutputStream ops = socket.getOutputStream();
                 DataOutputStream dops = new DataOutputStream(ops);
+
                 InputStream ins = socket.getInputStream();
                 DataInputStream di = new DataInputStream(ins);
 
