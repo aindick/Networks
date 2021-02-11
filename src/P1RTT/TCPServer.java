@@ -4,63 +4,82 @@ import java.io.*;
 public class TCPServer {
     static final int port = 2740;
 
-    public static void main(String[] args){
-        Socket client;
-        //Establishing a new socket that connects to my port.
+    public static void main(String[] args) throws IOException {
+
+        OutputStream outStream;
+        DataInputStream inputStream;
+        PrintWriter pW = null;
+        BufferedReader bR = null;
+        Socket client = null;
+
         try {
+
             ServerSocket socket = new ServerSocket(port);
-            //setSoTimeout throws a SocketTimeout Exception when time is reached.
-            socket.setSoTimeout(2000);
+            client = socket.accept();
 
-            for (; ; ) {
-                try {
-                    client = socket.accept();
-                    System.out.println("Works on: " + port);
-                    break;
-                    //Catches if the socket times out.
-                } catch (SocketTimeoutException e) {
-                    e.printStackTrace();
-                }
+            pW = new PrintWriter(client.getOutputStream(), true);
+            bR = new BufferedReader(new InputStreamReader(client.getInputStream()));
 
+            inputStream = new DataInputStream(new BufferedInputStream(client.getInputStream()));
+            outStream = new DataOutputStream(new BufferedOutputStream(client.getOutputStream()));
+
+            byte[] bytZero = new byte[1];
+            byte[] bytTen = new byte[1000];
+            byte[] bytSixteen = new byte[16000];
+            byte[] bytSixtyFour = new byte[64000];
+            byte[] bytTwoFiftySixT = new byte[256000];
+            byte[] bytOneMil = new byte[1000000];
+            byte[] bytOneTTwoFour = new byte[1024];
+            byte[] bytFiveOneTwo = new byte[512];
+            byte[] bytTwoFiveSix = new byte[256];
+
+
+            inputStream.read(bytZero, 0, 1);
+            outStream.write(bytZero);
+
+
+            inputStream.read(bytTen);
+            inputStream.read(bytSixteen);
+            inputStream.read(bytSixtyFour);
+            inputStream.read(bytTwoFiftySixT);
+            inputStream.read(bytOneMil);
+
+
+            int r = 0;
+            while ((r = inputStream.read(bytTwoFiveSix, 0, 256)) == 256) {
+                client.setSoTimeout(200);
             }
-            //This is for reading primitive Java data types(Data) and writing data (Output). Input = reading bytes.
-            OutputStream ops = client.getOutputStream();
-            DataOutputStream dops = new DataOutputStream(ops);
+            outStream.write(bytZero);
 
-            InputStream ins = client.getInputStream();
-            DataInputStream di = new DataInputStream(ins);
-            /* This block of code reads the integers from the DataInputStream
-               and then a byte array is established so then the readFully function
-               reads the bytes and allocates it into bs. dops then writes to bs.
-             */
-            for (;; ) {
-                try {
-                    int size = di.readInt();
-                    byte[] bs = new byte[size];
-                    di.readFully(bs);
-                    dops.write(bs);
-                    //Thrown if input stream is read ended before 4 bytes can be read.
-                } catch (EOFException e) {
-                    System.out.println("Done on Port: " + port);
-                    break;
-
-                }
+            while ((r = inputStream.read(bytFiveOneTwo, 0, 512)) == 512) {
+                client.setSoTimeout(200);
             }
-            //Closing up the scanner
-            ops.close();
-            dops.close();
-            ins.close();
-            di.close();
-            client.close();
-            socket.close();
+
+            outStream.write(bytZero);
+
+            while ((r = inputStream.read(bytOneTTwoFour, 0, 1024)) == 1024) {
+                client.setSoTimeout(300);
+            }
+
+            outStream.write(bytZero);
 
 
-
-            //Catch exception that will be thrown when something goes wrong and will exit the program.
         } catch (IOException e) {
             e.printStackTrace();
+
             System.exit(-1);
         }
+        bR.close();
 
+        try {
+
+            pW.close();
+            client.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+            System.exit(-1);
+        }
     }
 }
