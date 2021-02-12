@@ -23,7 +23,7 @@ public class TCPServer {
             inputStream = new DataInputStream(new BufferedInputStream(client.getInputStream()));
             outStream = new DataOutputStream(new BufferedOutputStream(client.getOutputStream()));
 
-            byte[] bytZero = new byte[1];
+            byte[] bytOne = new byte[1];
             byte[] bytTen = new byte[1000];
             byte[] bytSixteen = new byte[16000];
             byte[] bytSixtyFour = new byte[64000];
@@ -34,8 +34,8 @@ public class TCPServer {
             byte[] bytTwoFiveSix = new byte[256];
 
 
-            inputStream.read(bytZero, 0, 1);
-            outStream.write(bytZero);
+            inputStream.read(bytOne, 0, 1);
+            outStream.write(bytOne);
 
 
             inputStream.read(bytTen);
@@ -49,19 +49,19 @@ public class TCPServer {
             while ((r = inputStream.read(bytTwoFiveSix, 0, 256)) == 256) {
                 client.setSoTimeout(200);
             }
-            outStream.write(bytZero);
+            outStream.write(bytOne);
 
             while ((r = inputStream.read(bytFiveOneTwo, 0, 512)) == 512) {
                 client.setSoTimeout(200);
             }
 
-            outStream.write(bytZero);
+            outStream.write(bytOne);
 
             while ((r = inputStream.read(bytOneTTwoFour, 0, 1024)) == 1024) {
                 client.setSoTimeout(300);
             }
 
-            outStream.write(bytZero);
+            outStream.write(bytOne);
 
 
         } catch (IOException e) {
