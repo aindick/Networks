@@ -1,5 +1,5 @@
 # Networks
-This is the first assignment for Computer Networks CSC 455 at SUNY Oswego.
+This is the first assignment for Computer Networks CSC 445 at SUNY Oswego.
 
 Measure the latency and throughput of TCP and/or UDP (as noted below) across at least three pairs of machines using at least two different networks. For example, two CS servers (like wolf and pi), or a CS server to a laptop, wired or wireless, or off-campus. Create a web page with graphs summarizing your results. All messages must use xor encoding of 64bit (8 byte) values, based on a (possibly random) key. Include the following measurements:
    
